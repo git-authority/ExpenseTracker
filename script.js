@@ -12,7 +12,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   expenseForm.addEventListener("submit", (e) => {
     e.preventDefault();
-    const name = expenseNameInput.value.trim();
+    let name = expenseNameInput.value.trim();
+    name = name[0].toUpperCase() + name.slice(1);
     const amount = parseFloat(expenseAmountInput.value.trim());
 
     if (name != "" && !isNaN(amount) && amount > 0) {
@@ -36,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
     expenses.forEach((expense) => {
       const li = document.createElement("li");
       li.innerHTML = `
-        ${expense.name} - $${expense.amount}
+        ${expense.name} - ₹ ${expense.amount}
         <button data-id="${expense.id}">Delete</button>
         `;
       expenseList.appendChild(li);
@@ -63,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       saveExpensesToLocal()
       renderExpenses()
-      updateTotal(  )
+      updateTotal()
     }
   })
 
